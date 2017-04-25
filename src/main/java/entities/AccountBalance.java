@@ -8,7 +8,7 @@ public class AccountBalance {
     final Long decimals;
     final Long coins;
 
-    AccountBalance(Long decimals, Long coins) {
+    public AccountBalance(Long decimals, Long coins) {
         this.decimals = decimals;
         this.coins = coins;
     }

@@ -30,6 +30,10 @@ public class ValidatedTransfer {
             throw new TransactionValidationException("Transfer destination account cannot be found!");
         }
 
+        if(balanceChange == null){
+            throw new TransactionValidationException("Transfer balance change cannot be empty!");
+        }
+
         if (balanceChange.decimalsChange < 0 || balanceChange.coinsChange < 0) {
             throw new TransactionValidationException("Transfer balance change cannot be negetive!");
         }
