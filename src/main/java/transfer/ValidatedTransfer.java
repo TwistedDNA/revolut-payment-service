@@ -21,7 +21,7 @@ public class ValidatedTransfer {
         validate();
     }
 
-    private void validate() {
+    private void validate() throws TransactionValidationException {
         if (source == null) {
             throw new TransactionValidationException("Transfer source account cannot be found!");
         }

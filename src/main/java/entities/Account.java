@@ -34,20 +34,29 @@ public class Account {
     }
 
     public boolean isEnoughForTransaction(BalanceChange balanceChange) {
+        balanceChangeValidation(balanceChange);
         return (this.accountBalance.decimals > balanceChange.decimalsChange) ||
                (this.accountBalance.decimals == balanceChange.decimalsChange
                 && this.accountBalance.coins >= balanceChange.coinsChange);
     }
 
     public void substract(BalanceChange balanceChange) {
+        balanceChangeValidation(balanceChange);
         this.accountBalance =
-        new AccountBalance(this.accountBalance.decimals - balanceChange.decimalsChange,
+            new AccountBalance(this.accountBalance.decimals - balanceChange.decimalsChange,
                                this.accountBalance.decimals - balanceChange.decimalsChange);
-}
+    }
 
     public void benefit(BalanceChange balanceChange) {
+        balanceChangeValidation(balanceChange);
         this.accountBalance =
             new AccountBalance(this.accountBalance.decimals + balanceChange.decimalsChange,
                                this.accountBalance.decimals + balanceChange.decimalsChange);
+    }
+
+    private void balanceChangeValidation(BalanceChange balanceChange) throws IllegalArgumentException {
+        if (balanceChange == null || balanceChange.coinsChange == null || balanceChange.decimalsChange == null) {
+            throw new IllegalArgumentException("BalanceChange object is not valid!");
+        }
     }
 }
