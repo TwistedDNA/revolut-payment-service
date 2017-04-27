@@ -1,9 +1,9 @@
 package entities;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import exceptions.NotEnoughBalanceForOperationException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -35,11 +35,12 @@ public class AccountTest {
     }
 
     @Test
-    public void shouldReturnTFalseOnNotEnoughBalance() {
+    public void shouldThrowExceptionOnNotEnoughBalance() {
         Account account = plainAccount();
+        thrown.expect(NotEnoughBalanceForOperationException.class);
         BalanceChange balanceChange = new BalanceChange(new Long(5), new Long(5));
 
-        assertFalse(account.isEnoughForTransaction(balanceChange));
+        account.isEnoughForTransaction(balanceChange);
     }
 
     @Test

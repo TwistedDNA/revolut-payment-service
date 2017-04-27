@@ -1,17 +1,24 @@
 package entities;
 
+import javax.persistence.Embeddable;
+
 /**
  * Created by Maksym_Mazur on 4/25/2017.
  */
+@Embeddable
 public class AccountBalance {
 
-    final Long decimals;
-    final Long coins;
+    Long decimals;
+    Long coins;
 
     public AccountBalance(Long decimals, Long coins) {
         this.decimals = decimals;
         this.coins = coins;
     }
+
+    public AccountBalance() {
+    }
+
 
     @Override public boolean equals(Object o) {
         if (this == o) {
