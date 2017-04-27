@@ -1,9 +1,9 @@
 package entities;
 
-import exceptions.IncompleteParameterObjectException;
 import exceptions.NotEnoughBalanceForOperationException;
-import transfer.BalanceChange;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,11 +21,11 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private AccountBalance accountBalance;
+    private BigDecimal accountBalance;
 
-    public Account(Long id, AccountBalance accountBalance) {
+    public Account(Long id, BigDecimal accountBalance) {
         this.id = id;
-        this.accountBalance = accountBalance;
+        this.accountBalance = (accountBalance == null ? null : accountBalance.round(MathContext.DECIMAL32));
     }
 
     public Account() {
@@ -39,45 +39,33 @@ public class Account {
         this.id = id;
     }
 
-    public AccountBalance getAccountBalance() {
+    public BigDecimal getAccountBalance() {
         return accountBalance;
     }
 
-    public void setAccountBalance(AccountBalance accountBalance) {
-        this.accountBalance = accountBalance;
+    public void setAccountBalance(BigDecimal accountBalance) {
+        this.accountBalance = accountBalance.round(MathContext.DECIMAL32);
     }
 
-    public boolean isEnoughForTransaction(BalanceChange balanceChange) throws NotEnoughBalanceForOperationException {
-        balanceChangeValidation(balanceChange);
+    public boolean isEnoughForTransaction(BigDecimal balanceChange) throws NotEnoughBalanceForOperationException {
 
-        if ((this.accountBalance.decimals < balanceChange.decimalsChange) ||
-            (this.accountBalance.decimals.equals(balanceChange.decimalsChange)
-             && this.accountBalance.coins < balanceChange.coinsChange)) {
+        if (accountBalance.compareTo(balanceChange.round(MathContext.DECIMAL32)) < 0) {
             throw new NotEnoughBalanceForOperationException();
         }
-
         return true;
     }
 
-    public void substract(BalanceChange balanceChange) {
-        balanceChangeValidation(balanceChange);
+    public void substract(BigDecimal balanceChange) {
+
         this.accountBalance =
-            new AccountBalance(this.accountBalance.decimals - balanceChange.decimalsChange,
-                               this.accountBalance.coins - balanceChange.coinsChange);
+            this.accountBalance.subtract(balanceChange.round(MathContext.DECIMAL32)).round(MathContext.DECIMAL32);
     }
 
-    public void benefit(BalanceChange balanceChange) {
-        balanceChangeValidation(balanceChange);
+    public void benefit(BigDecimal balanceChange) {
         this.accountBalance =
-            new AccountBalance(this.accountBalance.decimals + balanceChange.decimalsChange,
-                               this.accountBalance.coins + balanceChange.coinsChange);
+            this.accountBalance.add(balanceChange.round(MathContext.DECIMAL32)).round(MathContext.DECIMAL32);
     }
 
-    private void balanceChangeValidation(BalanceChange balanceChange) throws IncompleteParameterObjectException {
-        if (balanceChange == null || balanceChange.coinsChange == null || balanceChange.decimalsChange == null) {
-            throw new IncompleteParameterObjectException("BalanceChange object is not valid!");
-        }
-    }
 
     @Override public boolean equals(Object o) {
         if (this == o) {

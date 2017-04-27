@@ -4,10 +4,10 @@ import static org.junit.Assert.assertEquals;
 
 import account.AccountService;
 import entities.Account;
-import entities.AccountBalance;
 import org.junit.Test;
 import persistence.EntityManagerFactoryProvider;
 
+import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 /**
@@ -17,7 +17,7 @@ public class AccountSaveFindThroughService {
 
     @Test
     public void canSaveAndFindAccountThroughAccountService() {
-        Account toSaveToDb = new Account(null, new AccountBalance(new Long(6), new Long(6)));
+        Account toSaveToDb = new Account(null, new BigDecimal(6.6));
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
 
         em.getTransaction().begin();

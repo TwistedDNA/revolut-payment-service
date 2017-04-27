@@ -3,6 +3,9 @@ package transfer;
 import entities.Account;
 import exceptions.TransactionValidationException;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 
 /**
  * Created by Maksym_Mazur on 4/25/2017.
@@ -11,13 +14,13 @@ public class ValidatedTransfer {
 
     final Account source;
     final Account destination;
-    final BalanceChange balanceChange;
+    final BigDecimal balanceChange;
 
-    public ValidatedTransfer(Account source, Account destination, BalanceChange balanceChange) throws
-                                                                                               TransactionValidationException {
+    public ValidatedTransfer(Account source, Account destination, BigDecimal balanceChange) throws
+                                                                                            TransactionValidationException {
         this.source = source;
         this.destination = destination;
-        this.balanceChange = balanceChange;
+        this.balanceChange = (balanceChange == null ? null : balanceChange.round(MathContext.DECIMAL32));
         validate();
     }
 
@@ -30,11 +33,11 @@ public class ValidatedTransfer {
             throw new TransactionValidationException("Transfer destination account cannot be found!");
         }
 
-        if(balanceChange == null){
+        if (balanceChange == null) {
             throw new TransactionValidationException("Transfer balance change cannot be empty!");
         }
 
-        if (balanceChange.decimalsChange < 0 || balanceChange.coinsChange < 0) {
+        if (balanceChange.compareTo(BigDecimal.ZERO) < 0) {
             throw new TransactionValidationException("Transfer balance change cannot be negetive!");
         }
 

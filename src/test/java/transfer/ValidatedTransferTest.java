@@ -2,12 +2,13 @@ package transfer;
 
 
 import entities.Account;
-import entities.AccountBalance;
 import exceptions.NotEnoughBalanceForOperationException;
 import exceptions.TransactionValidationException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+
+import java.math.BigDecimal;
 
 /**
  * Created by Maksym_Mazur on 4/25/2017.
@@ -39,15 +40,6 @@ public class ValidatedTransferTest {
         return new ValidatedTransfer(new Account(null, null), null, null);
     }
 
-    @Test
-    public void shouldThrowExceptionOnMissingBalanceChange() {
-        thrown.expect(TransactionValidationException.class);
-        thrown.expectMessage("Transfer balance change cannot be empty!");
-        ValidatedTransfer
-            validatedTransfer =
-            withoutBalanceChange();
-    }
-
     private ValidatedTransfer withoutBalanceChange() {
         return new ValidatedTransfer(new Account(null, null), new Account(null, null), null);
     }
@@ -63,7 +55,7 @@ public class ValidatedTransferTest {
 
     private ValidatedTransfer withNegetiveTransferBalance() {
         return new ValidatedTransfer(new Account(null, null), new Account(null, null),
-                                     new BalanceChange(new Long(-5), new Long(0)));
+                                     new BigDecimal(-5.0));
     }
 
     @Test
@@ -75,8 +67,8 @@ public class ValidatedTransferTest {
     }
 
     private ValidatedTransfer withInsuficientSourceAccountBalance() {
-        return new ValidatedTransfer(new Account(null, new AccountBalance(new Long(3), new Long(0))),
+        return new ValidatedTransfer(new Account(null, new BigDecimal(3.0)),
                                      new Account(null, null),
-                                     new BalanceChange(new Long(5), new Long(0)));
+                                     new BigDecimal(5.0));
     }
 }

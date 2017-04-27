@@ -3,10 +3,10 @@ package integration;
 import static org.junit.Assert.assertEquals;
 
 import entities.Account;
-import entities.AccountBalance;
 import org.junit.Test;
 import persistence.EntityManagerFactoryProvider;
 
+import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 /**
@@ -19,7 +19,7 @@ public class AccountSaveFindDirectly {
     public void canPersistAccountAndReadItBack() {
         EntityManager entityManager = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         entityManager.getTransaction().begin();
-        Account toSaveToDb = new Account(null, new AccountBalance(new Long(7), new Long(7)));
+        Account toSaveToDb = new Account(null, new BigDecimal(7.7));
 
         entityManager.persist(toSaveToDb);
 
