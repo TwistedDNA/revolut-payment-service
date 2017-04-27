@@ -1,8 +1,13 @@
 package entities;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import transfer.BalanceChange;
 
 /**
  * Created by Maksym_Mazur on 4/26/2017.
@@ -21,7 +26,45 @@ public class AccountTest {
         account.isEnoughForTransaction(null);
     }
 
-    //TODO cover all Account public methods except getters and setters
+    @Test
+    public void shouldReturnTrueOnEnoughBalance() {
+        Account account = plainAccount();
+        BalanceChange balanceChange = new BalanceChange(new Long(1), new Long(1));
+
+        assertTrue(account.isEnoughForTransaction(balanceChange));
+    }
+
+    @Test
+    public void shouldReturnTFalseOnNotEnoughBalance() {
+        Account account = plainAccount();
+        BalanceChange balanceChange = new BalanceChange(new Long(5), new Long(5));
+
+        assertFalse(account.isEnoughForTransaction(balanceChange));
+    }
+
+    @Test
+    public void shouldProperlySubstractAccountBalance() {
+        Account account = plainAccount();
+        BalanceChange balanceToSubstract = new BalanceChange(new Long(1), new Long(1));
+        AccountBalance expectedBalance = new AccountBalance(new Long(4), new Long(1));
+
+        account.substract(balanceToSubstract);
+
+        assertEquals(expectedBalance, account.getAccountBalance());
+
+    }
+
+    @Test
+    public void shouldProperlyBenefitAccountBalance() {
+        Account account = plainAccount();
+        BalanceChange balanceToSubstract = new BalanceChange(new Long(1), new Long(1));
+        AccountBalance expectedBalance = new AccountBalance(new Long(6), new Long(3));
+
+        account.benefit(balanceToSubstract);
+
+        assertEquals(expectedBalance, account.getAccountBalance());
+
+    }
 
     private Account plainAccount() {
         return new Account(new Long(4), new AccountBalance(new Long(5), new Long(2)));
