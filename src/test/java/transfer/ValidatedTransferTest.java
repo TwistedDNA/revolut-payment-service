@@ -3,6 +3,7 @@ package transfer;
 
 import entities.Account;
 import entities.AccountBalance;
+import exceptions.NotEnoughBalanceForOperationException;
 import exceptions.TransactionValidationException;
 import org.junit.Rule;
 import org.junit.Test;
@@ -67,8 +68,7 @@ public class ValidatedTransferTest {
 
     @Test
     public void shouldThrowExceptionWhenInsuficcientSourceAccountBalance() {
-        thrown.expect(TransactionValidationException.class);
-        thrown.expectMessage("Transfer source account has insufficient balance for transaction!");
+        thrown.expect(NotEnoughBalanceForOperationException.class);
         ValidatedTransfer
             validatedTransfer =
             withInsuficientSourceAccountBalance();

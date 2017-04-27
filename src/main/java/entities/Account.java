@@ -61,7 +61,6 @@ public class Account {
 
     public void substract(BalanceChange balanceChange) {
         balanceChangeValidation(balanceChange);
-        isEnoughForTransaction(balanceChange);
         this.accountBalance =
             new AccountBalance(this.accountBalance.decimals - balanceChange.decimalsChange,
                                this.accountBalance.coins - balanceChange.coinsChange);
