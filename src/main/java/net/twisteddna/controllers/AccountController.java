@@ -1,6 +1,7 @@
 package net.twisteddna.controllers;
 
 import net.twisteddna.account.AccountService;
+import net.twisteddna.entities.Account;
 import net.twisteddna.transfer.TransferService;
 import net.twisteddna.transfer.ValidatedTransfer;
 
@@ -14,7 +15,7 @@ import javax.ws.rs.core.Response;
 /**
  * Created by Maksym_Mazur on 4/25/2017.
  */
-@Path("/transfer")
+@Path("/")
 public class AccountController {
 
     @POST
@@ -30,6 +31,14 @@ public class AccountController {
                                                               accountService.getAccountById(destinationAccountId),
                                                               balanceChange));
         return Response.status(200).entity("OK").build();
+    }
+
+    @POST
+    @Path("/accounts/add/with-balance/{balance}")
+    public String addAccount(@PathParam("balance") BigDecimal balance){
+        AccountService accountService = new AccountService();
+        Account created = accountService.addAccount(balance);
+        return created.toString();
     }
 
     @GET

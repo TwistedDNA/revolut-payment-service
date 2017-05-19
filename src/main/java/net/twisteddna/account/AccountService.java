@@ -3,6 +3,7 @@ package net.twisteddna.account;
 import net.twisteddna.entities.Account;
 import net.twisteddna.persistence.EntityManagerFactoryProvider;
 
+import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 /**
@@ -16,5 +17,14 @@ public class AccountService {
         Account found = em.find(Account.class, accountId);
         em.getTransaction().commit();
         return found;
+    }
+
+    public Account addAccount(BigDecimal balance) {
+        EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
+        em.getTransaction().begin();
+        Account accountToAdd = new Account(null, balance);
+        em.persist(accountToAdd);
+        em.getTransaction().commit();
+        return accountToAdd;
     }
 }
