@@ -1,6 +1,6 @@
-package transfer;
+package net.twisteddna.transfer;
 
-import persistence.EntityManagerFactoryProvider;
+import net.twisteddna.persistence.EntityManagerFactoryProvider;
 
 import javax.persistence.EntityManager;
 

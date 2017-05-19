@@ -1,7 +1,7 @@
-package account;
+package net.twisteddna.account;
 
-import entities.Account;
-import persistence.EntityManagerFactoryProvider;
+import net.twisteddna.entities.Account;
+import net.twisteddna.persistence.EntityManagerFactoryProvider;
 
 import javax.persistence.EntityManager;
 

@@ -1,10 +1,11 @@
-package controllers;
+package net.twisteddna.controllers;
 
-import account.AccountService;
-import transfer.TransferService;
-import transfer.ValidatedTransfer;
+import net.twisteddna.account.AccountService;
+import net.twisteddna.transfer.TransferService;
+import net.twisteddna.transfer.ValidatedTransfer;
 
 import java.math.BigDecimal;
+import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -29,5 +30,10 @@ public class AccountController {
                                                               accountService.getAccountById(destinationAccountId),
                                                               balanceChange));
         return Response.status(200).entity("OK").build();
+    }
+
+    @GET
+    public String helloworld() {
+        return "Hello World!";
     }
 }

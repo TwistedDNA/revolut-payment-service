@@ -1,4 +1,4 @@
-package exceptions;
+package net.twisteddna.exceptions;
 
 /**
  * Created by Maksym_Mazur on 4/27/2017.
@@ -10,6 +10,6 @@ public class NotEnoughBalanceForOperationException extends IllegalArgumentExcept
     }
 
     public NotEnoughBalanceForOperationException() {
-        super("Not enough balance on account for operation!");
+        super("Not enough balance on net.twisteddna.account for operation!");
     }
 }

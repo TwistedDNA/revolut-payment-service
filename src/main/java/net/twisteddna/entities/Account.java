@@ -1,6 +1,6 @@
-package entities;
+package net.twisteddna.entities;
 
-import exceptions.NotEnoughBalanceForOperationException;
+import net.twisteddna.exceptions.NotEnoughBalanceForOperationException;
 
 import java.math.BigDecimal;
 import java.math.MathContext;

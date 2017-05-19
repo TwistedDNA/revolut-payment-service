@@ -2,10 +2,10 @@ package integration;
 
 import static org.junit.Assert.assertEquals;
 
-import account.AccountService;
-import entities.Account;
+import net.twisteddna.account.AccountService;
+import net.twisteddna.entities.Account;
 import org.junit.Test;
-import persistence.EntityManagerFactoryProvider;
+import net.twisteddna.persistence.EntityManagerFactoryProvider;
 
 import java.math.BigDecimal;
 import javax.persistence.EntityManager;

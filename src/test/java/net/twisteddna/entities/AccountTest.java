@@ -1,9 +1,9 @@
-package entities;
+package net.twisteddna.entities;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-import exceptions.NotEnoughBalanceForOperationException;
+import net.twisteddna.exceptions.NotEnoughBalanceForOperationException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
