@@ -16,7 +16,7 @@ public class App {
 
     static final String ROOT_PATH = "transfer";
 
-    private static final URI BASE_URI = URI.create("http://localhost:8080/");
+    private static final URI BASE_URI = URI.create("http://localhost:8008/");
 
     public static void main(String[] args) {
         try {
