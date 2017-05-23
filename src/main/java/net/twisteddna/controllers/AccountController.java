@@ -1,5 +1,6 @@
-package net.twisteddna.account;
+package net.twisteddna.controllers;
 
+import net.twisteddna.account.AccountService;
 import net.twisteddna.entities.Account;
 
 import java.math.BigDecimal;

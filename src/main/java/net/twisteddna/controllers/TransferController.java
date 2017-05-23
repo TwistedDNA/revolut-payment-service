@@ -1,6 +1,8 @@
-package net.twisteddna.transfer;
+package net.twisteddna.controllers;
 
 import net.twisteddna.account.AccountService;
+import net.twisteddna.transfer.TransferService;
+import net.twisteddna.transfer.ValidatedTransfer;
 
 import java.math.BigDecimal;
 import javax.ws.rs.Consumes;

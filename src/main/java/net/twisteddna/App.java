@@ -4,7 +4,7 @@ import java.net.URI;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import net.twisteddna.account.AccountController;
+import net.twisteddna.controllers.AccountController;
 import io.netty.channel.Channel;
 import org.glassfish.jersey.netty.httpserver.NettyHttpContainerProvider;
 import org.glassfish.jersey.server.ResourceConfig;
