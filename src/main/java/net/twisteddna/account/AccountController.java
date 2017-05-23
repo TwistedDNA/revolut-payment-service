@@ -28,10 +28,20 @@ public class AccountController {
         return Response.status(201).entity(created.getId()).build();
     }
 
+
+    @GET
+    @Path("/{accountId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Account accountDetails(@PathParam("accountId") Long accountId) {
+        AccountService accountService = new AccountService();
+        Account account = accountService.getAccountById(accountId);
+        return account;
+    }
+
     @GET
     @Path("/{accountId}/balance")
     @Produces(MediaType.APPLICATION_JSON)
-    public BigDecimal helloworld(@PathParam("accountId") Long accountId) {
+    public BigDecimal getBalance(@PathParam("accountId") Long accountId) {
         AccountService accountService = new AccountService();
         BigDecimal balance = accountService.getAccountById(accountId).getAccountBalance();
         return balance;
