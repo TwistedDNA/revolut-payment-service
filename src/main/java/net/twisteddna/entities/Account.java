@@ -80,12 +80,19 @@ public class Account {
         if (!id.equals(account.id)) {
             return false;
         }
-        return accountBalance != null ? accountBalance.equals(account.accountBalance) : account.accountBalance == null;
+        return accountBalance != null ? accountBalance.compareTo(account.accountBalance) == 0 : account.accountBalance == null;
     }
 
     @Override public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + (accountBalance != null ? accountBalance.hashCode() : 0);
         return result;
+    }
+
+    @Override public String toString() {
+        return "Account{" +
+               "id=" + id +
+               ", accountBalance=" + accountBalance +
+               '}';
     }
 }
