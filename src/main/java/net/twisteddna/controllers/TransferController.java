@@ -1,10 +1,10 @@
 package net.twisteddna.controllers;
 
 import net.twisteddna.account.AccountService;
+import net.twisteddna.transfer.Transfer;
 import net.twisteddna.transfer.TransferService;
 import net.twisteddna.transfer.ValidatedTransfer;
 
-import java.math.BigDecimal;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -19,16 +19,15 @@ public class TransferController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response transfer(Long sourceAccountId,
-                             Long destinationAccountId,
-                             BigDecimal balanceChange) {
+    public Response transfer(Transfer transfer) {
 
         TransferService transferService = new TransferService();
         AccountService accountService = new AccountService();
 
-        transferService.executeTransfer(new ValidatedTransfer(accountService.getAccountById(sourceAccountId),
-                                                              accountService.getAccountById(destinationAccountId),
-                                                              balanceChange));
+        transferService
+            .executeTransfer(new ValidatedTransfer(accountService.getAccountById(transfer.getSourceAccountId()),
+                                                   accountService.getAccountById(transfer.getDestinationAccountId()),
+                                                   transfer.getBalanceChange()));
 
         return Response.status(201).entity("OK").build();
     }

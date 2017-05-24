@@ -60,6 +60,11 @@
             <artifactId>jersey-container-netty-http</artifactId>
             <version>2.26-b03</version>
         </dependency>
+        <dependency>
+            <groupId>org.glassfish.jersey.media</groupId>
+            <artifactId>jersey-media-json-jackson</artifactId>
+            <version>2.26-b03</version>
+        </dependency>
     </dependencies>
 
     <build>

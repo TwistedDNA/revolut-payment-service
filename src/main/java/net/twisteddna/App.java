@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import net.twisteddna.controllers.AccountController;
 import io.netty.channel.Channel;
+import net.twisteddna.controllers.TransferController;
 import org.glassfish.jersey.netty.httpserver.NettyHttpContainerProvider;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -20,7 +21,7 @@ public class App {
 
     public static void main(String[] args) {
         try {
-            ResourceConfig resourceConfig = new ResourceConfig(AccountController.class);
+            ResourceConfig resourceConfig = new ResourceConfig(AccountController.class, TransferController.class);
             final Channel server = NettyHttpContainerProvider.createHttp2Server(BASE_URI, resourceConfig, null);
 
             Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
