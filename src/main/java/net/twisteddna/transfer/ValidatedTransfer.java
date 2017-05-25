@@ -26,11 +26,11 @@ public class ValidatedTransfer {
 
     private void validate() throws TransactionValidationException {
         if (source == null) {
-            throw new TransactionValidationException("Transfer source net.twisteddna.account cannot be found!");
+            throw new TransactionValidationException("Transfer source account cannot be found!");
         }
 
         if (destination == null) {
-            throw new TransactionValidationException("Transfer destination net.twisteddna.account cannot be found!");
+            throw new TransactionValidationException("Transfer destination account cannot be found!");
         }
 
         if (balanceChange == null) {
@@ -43,7 +43,7 @@ public class ValidatedTransfer {
 
         if (!source.isEnoughForTransaction(balanceChange)) {
             throw new TransactionValidationException(
-                "Transfer source net.twisteddna.account has insufficient balance for transaction!");
+                "Transfer source account has insufficient balance for transaction!");
         }
     }
 }

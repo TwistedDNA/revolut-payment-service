@@ -1,24 +1,24 @@
-package net.twisteddna.transfer;
+package net.twisteddna.dto;
 
 import java.math.BigDecimal;
 
 /**
  * Created by Maksym_Mazur on 5/24/2017.
  */
-public class Transfer {
+public class TransferDto {
 
     private Long sourceAccountId;
     private Long destinationAccountId;
     private BigDecimal balanceChange;
 
-    public Transfer(Long sourceAccountId, Long destinationAccountId, BigDecimal balanceChange) {
+    public TransferDto(Long sourceAccountId, Long destinationAccountId, BigDecimal balanceChange) {
         this.sourceAccountId = sourceAccountId;
         this.destinationAccountId = destinationAccountId;
         this.balanceChange = balanceChange;
     }
 
 
-    public Transfer() {
+    public TransferDto() {
     }
 
     public Long getSourceAccountId() {

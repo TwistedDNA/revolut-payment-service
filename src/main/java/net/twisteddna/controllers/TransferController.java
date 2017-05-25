@@ -1,7 +1,7 @@
 package net.twisteddna.controllers;
 
 import net.twisteddna.account.AccountService;
-import net.twisteddna.transfer.Transfer;
+import net.twisteddna.dto.TransferDto;
 import net.twisteddna.transfer.TransferService;
 import net.twisteddna.transfer.ValidatedTransfer;
 
@@ -19,7 +19,7 @@ public class TransferController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response transfer(Transfer transfer) {
+    public Response transfer(TransferDto transfer) {
 
         TransferService transferService = new TransferService();
         AccountService accountService = new AccountService();

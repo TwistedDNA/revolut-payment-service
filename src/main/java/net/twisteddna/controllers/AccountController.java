@@ -1,6 +1,7 @@
 package net.twisteddna.controllers;
 
 import net.twisteddna.account.AccountService;
+import net.twisteddna.dto.BalanceDto;
 import net.twisteddna.entities.Account;
 
 import java.math.BigDecimal;
@@ -22,9 +23,9 @@ public class AccountController {
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response addAccount(BigDecimal balance) {
+    public Response addAccount(BalanceDto balanceDto) {
         AccountService accountService = new AccountService();
-        Account created = accountService.addAccount(balance);
+        Account created = accountService.addAccount(balanceDto.getBalance());
 
         return Response.status(201).entity(created.getId()).build();
     }

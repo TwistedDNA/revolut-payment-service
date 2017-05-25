@@ -21,7 +21,7 @@ public class ValidatedTransferTest {
     @Test
     public void shouldThrowExceptionOnMissingSourceAccount() {
         thrown.expect(TransactionValidationException.class);
-        thrown.expectMessage("Transfer source net.twisteddna.account cannot be found!");
+        thrown.expectMessage("Transfer source account cannot be found!");
         ValidatedTransfer validatedTransfer = withoutSourceAccount();
     }
 
@@ -32,7 +32,7 @@ public class ValidatedTransferTest {
     @Test
     public void shouldThrowExceptionOnMissingDestinationAccount() {
         thrown.expect(TransactionValidationException.class);
-        thrown.expectMessage("Transfer destination net.twisteddna.account cannot be found!");
+        thrown.expectMessage("Transfer destination account cannot be found!");
         ValidatedTransfer validatedTransfer = withoutDestinationAccount();
     }
 
