@@ -19,7 +19,7 @@ public class AccountSaveFindDirectly {
     public void canPersistAccountAndReadItBack() {
         EntityManager entityManager = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
         entityManager.getTransaction().begin();
-        Account toSaveToDb = new Account(null, new BigDecimal(7.7));
+        Account toSaveToDb = new Account(null,BigDecimal.valueOf(7.7));
 
         entityManager.persist(toSaveToDb);
 

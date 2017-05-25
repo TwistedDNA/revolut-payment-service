@@ -17,7 +17,7 @@ public class AccountSaveFindThroughService {
 
     @Test
     public void canSaveAndFindAccountThroughAccountService() {
-        Account toSaveToDb = new Account(null, new BigDecimal(6.6));
+        Account toSaveToDb = new Account(null, BigDecimal.valueOf(6.6));
         EntityManager em = EntityManagerFactoryProvider.getEntityManagerFactory().createEntityManager();
 
         em.getTransaction().begin();

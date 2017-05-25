@@ -1,14 +1,14 @@
 package net.twisteddna;
 
-import java.net.URI;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import net.twisteddna.controllers.AccountController;
 import io.netty.channel.Channel;
+import net.twisteddna.controllers.AccountController;
 import net.twisteddna.controllers.TransferController;
 import org.glassfish.jersey.netty.httpserver.NettyHttpContainerProvider;
 import org.glassfish.jersey.server.ResourceConfig;
+
+import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Maksym_Mazur on 5/19/2017.
@@ -31,8 +31,8 @@ public class App {
             }));
 
             System.out.println(
-                String.format("Application started. (HTTP/2 enabled!)\nTry out %s%s\nStop the application using "
-                              + "CTRL+C.", BASE_URI, ROOT_PATH));
+                String.format("Application started. (HTTP/2 enabled!)%nStop the application using "
+                              + "CTRL+C."));
             Thread.currentThread().join();
         } catch (InterruptedException ex) {
             Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);

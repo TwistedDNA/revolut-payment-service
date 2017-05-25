@@ -18,11 +18,10 @@ public class ValidatedTransferTest {
     @Rule
     public ExpectedException thrown = ExpectedException.none();
 
-    @Test
     public void shouldThrowExceptionOnMissingSourceAccount() {
         thrown.expect(TransactionValidationException.class);
         thrown.expectMessage("Transfer source account cannot be found!");
-        ValidatedTransfer validatedTransfer = withoutSourceAccount();
+        withoutSourceAccount();
     }
 
     private ValidatedTransfer withoutSourceAccount() {
@@ -33,7 +32,7 @@ public class ValidatedTransferTest {
     public void shouldThrowExceptionOnMissingDestinationAccount() {
         thrown.expect(TransactionValidationException.class);
         thrown.expectMessage("Transfer destination account cannot be found!");
-        ValidatedTransfer validatedTransfer = withoutDestinationAccount();
+        withoutDestinationAccount();
     }
 
     private ValidatedTransfer withoutDestinationAccount() {
@@ -48,9 +47,7 @@ public class ValidatedTransferTest {
     public void shouldThrowExceptionOnNegetiveBalanceChange() {
         thrown.expect(TransactionValidationException.class);
         thrown.expectMessage("Transfer balance change cannot be negetive!");
-        ValidatedTransfer
-            validatedTransfer =
-            withNegetiveTransferBalance();
+        withNegetiveTransferBalance();
     }
 
     private ValidatedTransfer withNegetiveTransferBalance() {
@@ -61,9 +58,7 @@ public class ValidatedTransferTest {
     @Test
     public void shouldThrowExceptionWhenInsuficcientSourceAccountBalance() {
         thrown.expect(NotEnoughBalanceForOperationException.class);
-        ValidatedTransfer
-            validatedTransfer =
-            withInsuficientSourceAccountBalance();
+        withInsuficientSourceAccountBalance();
     }
 
     private ValidatedTransfer withInsuficientSourceAccountBalance() {

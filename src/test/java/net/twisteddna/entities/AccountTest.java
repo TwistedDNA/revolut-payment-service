@@ -23,7 +23,7 @@ public class AccountTest {
     public void shouldReturnTrueOnEnoughBalance() {
         Account account = plainAccount();
 
-        assertTrue(account.isEnoughForTransaction(new BigDecimal(1.1)));
+        assertTrue(account.isEnoughForTransaction(BigDecimal.valueOf(1.1)));
     }
 
     @Test
@@ -31,16 +31,16 @@ public class AccountTest {
         Account account = plainAccount();
         thrown.expect(NotEnoughBalanceForOperationException.class);
 
-        account.isEnoughForTransaction(new BigDecimal(6));
+        account.isEnoughForTransaction(BigDecimal.valueOf(6));
     }
 
     @Test
     public void shouldProperlySubstractAccountBalance() {
         Account account = plainAccount();
 
-        account.substract(new BigDecimal(1.1));
+        account.substract(BigDecimal.valueOf(1.1));
 
-        assertEquals(new BigDecimal(4.1).round(MathContext.DECIMAL32), account.getAccountBalance());
+        assertEquals(BigDecimal.valueOf(4.1).round(MathContext.DECIMAL32), account.getAccountBalance());
 
     }
 
@@ -48,14 +48,14 @@ public class AccountTest {
     public void shouldProperlyBenefitAccountBalance() {
         Account account = plainAccount();
 
-        account.benefit(new BigDecimal(1.1));
+        account.benefit(BigDecimal.valueOf(1.1));
 
-        assertEquals(new BigDecimal(6.3).round(MathContext.DECIMAL32), account.getAccountBalance());
+        assertEquals(BigDecimal.valueOf(6.3).round(MathContext.DECIMAL32), account.getAccountBalance());
 
     }
 
     private Account plainAccount() {
-        return new Account(new Long(4), new BigDecimal(5.2));
+        return new Account(Long.valueOf(4), BigDecimal.valueOf(5.2));
     }
 
 
