@@ -16,8 +16,8 @@ public class TransferService {
         validatedTransfer.source.substract(validatedTransfer.balanceChange);
         validatedTransfer.destination.benefit(validatedTransfer.balanceChange);
 
-        em.persist(validatedTransfer.source);
-        em.persist(validatedTransfer.destination);
+        em.merge(validatedTransfer.source);
+        em.merge(validatedTransfer.destination);
 
         em.getTransaction().commit();
     }
