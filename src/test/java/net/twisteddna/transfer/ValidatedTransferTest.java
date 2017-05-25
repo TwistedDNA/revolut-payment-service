@@ -11,7 +11,7 @@ import org.junit.rules.ExpectedException;
 import java.math.BigDecimal;
 
 /**
- * Created by Maksym_Mazur on 4/25/2017.
+ * Crafted by TwistedDNA on 4/25/2017.
  */
 public class ValidatedTransferTest {
 

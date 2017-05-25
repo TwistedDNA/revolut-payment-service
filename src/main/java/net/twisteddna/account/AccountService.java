@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import javax.persistence.EntityManager;
 
 /**
- * Created by Maksym_Mazur on 4/25/2017.
+ * Crafted by TwistedDNA on 4/25/2017.
  */
 public class AccountService {
 

@@ -8,7 +8,7 @@ import java.math.MathContext;
 
 
 /**
- * Created by Maksym_Mazur on 4/25/2017.
+ * Crafted by TwistedDNA on 4/25/2017.
  */
 public class ValidatedTransfer {
 

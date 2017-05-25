@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Created by Maksym_Mazur on 5/19/2017.
+ * Crafted by TwistedDNA on 5/19/2017.
  */
 public class App {
 
