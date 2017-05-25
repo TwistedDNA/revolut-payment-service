@@ -11,7 +11,7 @@ import javax.persistence.Id;
 
 
 /**
- * Created by Maksym_Mazur on 4/25/2017.
+ * Crafted by TwistedDNA on 4/25/2017.
  */
 
 @Entity
@@ -77,10 +77,8 @@ public class Account {
 
         Account account = (Account) o;
 
-        if (!id.equals(account.id)) {
-            return false;
-        }
-        return accountBalance != null ? accountBalance.compareTo(account.accountBalance) == 0 : account.accountBalance == null;
+        return id.equals(account.id) && (accountBalance != null ? accountBalance.compareTo(account.accountBalance) == 0
+                                                                : account.accountBalance == null);
     }
 
     @Override public int hashCode() {

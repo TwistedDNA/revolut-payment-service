@@ -55,7 +55,7 @@ public class AccountTest {
     }
 
     private Account plainAccount() {
-        return new Account(Long.valueOf(4), BigDecimal.valueOf(5.2));
+        return new Account(4L, BigDecimal.valueOf(5.2));
     }
 
 

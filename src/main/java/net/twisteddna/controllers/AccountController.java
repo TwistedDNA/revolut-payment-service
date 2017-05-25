@@ -15,7 +15,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 /**
- * Created by Maksym_Mazur on 4/25/2017.
+ * Crafted by TwistedDNA on 4/25/2017.
  */
 @Path("/accounts")
 public class AccountController {
@@ -36,8 +36,7 @@ public class AccountController {
     @Produces(MediaType.APPLICATION_JSON)
     public Account accountDetails(@PathParam("accountId") Long accountId) {
         AccountService accountService = new AccountService();
-        Account account = accountService.getAccountById(accountId);
-        return account;
+        return accountService.getAccountById(accountId);
     }
 
     @GET
@@ -45,7 +44,6 @@ public class AccountController {
     @Produces(MediaType.APPLICATION_JSON)
     public BigDecimal getBalance(@PathParam("accountId") Long accountId) {
         AccountService accountService = new AccountService();
-        BigDecimal balance = accountService.getAccountById(accountId).getAccountBalance();
-        return balance;
+        return accountService.getAccountById(accountId).getAccountBalance();
     }
 }
